@@ -25,17 +25,23 @@ const zkSyncTestnet =
           "https://zksync2-testnet-explorer.zksync.dev/contract_verification",
       };
 
+  const zkSyncLocalTestnet = {
+    url: "http://localhost:8011",
+    ethNetwork: "goerli",
+    zksync: true,
+  }
+
 const config: HardhatUserConfig = {
   zksolc: {
     version: "latest", // can be defined like 1.3.x
     settings: {},
   },
-  defaultNetwork: "zkSyncTestnet",
+  defaultNetwork: "zkSyncLocalTestnet",
   networks: {
     hardhat: {
       zksync: false,
     },
-    zkSyncTestnet,
+    zkSyncLocalTestnet,
   },
   solidity: {
     version: "0.8.17",
