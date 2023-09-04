@@ -24,3 +24,7 @@ jobs:
     - name: Run Tests
       run: |
         yarn test:contracts
+
+    - name: Shutdown Node
+      run: |
+        pkill -f era_test_node || true
