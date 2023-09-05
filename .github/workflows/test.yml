@@ -20,6 +20,9 @@ jobs:
       uses: dutterbutter/era-test-node-action@main
       with:
         mode: 'run'
+    
+    - name: Ensure Ganache is up
+      run: sleep 10
 
     - name: Install Dependencies
       run: yarn install
