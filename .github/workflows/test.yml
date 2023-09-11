@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v3
     
     - name: Start Node
-      uses: dutterbutter/era-test-node-action@v0.0.1
+      uses: dutterbutter/era-test-node-action@main
       with:
         mode: 'run'
     
