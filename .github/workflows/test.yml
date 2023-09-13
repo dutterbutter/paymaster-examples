@@ -16,7 +16,7 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
     
-    - name: Start node
+    - name: Start node in background
       uses: dutterbutter/era-test-node-action@main
       with:
         mode: 'run'
