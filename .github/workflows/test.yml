@@ -20,9 +20,6 @@ jobs:
       uses: dutterbutter/era-test-node-action@main
       with:
         mode: 'run'
-    
-    - name: Ensure node is up
-      run: sleep 11
 
     - name: Install Dependencies
       run: yarn install
