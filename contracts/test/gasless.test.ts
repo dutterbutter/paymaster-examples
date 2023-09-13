@@ -10,7 +10,6 @@ import { deployContract, fundAccount } from "./utils";
 import dotenv from "dotenv";
 dotenv.config();
 
-// load wallet private key from env file
 const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
 
 describe("GaslessPaymaster", function () {
@@ -24,30 +23,36 @@ describe("GaslessPaymaster", function () {
   let greeter: Contract;
 
   before(async function () {
-    // setup deployer
+    console.log("Setting up environment...");
+
     provider = new Provider(
       hre.userConfig.networks?.zkSyncLocalTestnet?.url,
     );
     wallet = new Wallet(PRIVATE_KEY, provider);
     deployer = new Deployer(hre, wallet);
-    // setup new wallet
     emptyWallet = Wallet.createRandom();
     console.log(`Empty wallet's address: ${emptyWallet.address}`);
     userWallet = new Wallet(emptyWallet.privateKey, provider);
-    // deploy contracts
+    
+    console.log("Deploying contracts...");
     paymaster = await deployContract(deployer, "GaslessPaymaster", []);
     greeter = await deployContract(deployer, "Greeter", ["Hi"]);
-    // fund paymaster
+    console.log(`Paymaster deployed at: ${paymaster.address}`);
+    console.log(`Greeter deployed at: ${greeter.address}`);
+
+    console.log("Funding Paymaster...");
     await fundAccount(wallet, paymaster.address, "3");
     ownerInitialBalance = await wallet.getBalance();
+    console.log(`Owner initial balance: ${ownerInitialBalance}`);
   });
 
   async function executeGreetingTransaction(user: Wallet) {
+    console.log("Executing greeting transaction...");
     const gasPrice = await provider.getGasPrice();
+    console.log(`Gas price: ${gasPrice}`);
 
     const paymasterParams = utils.getPaymasterParams(paymaster.address, {
       type: "General",
-      // empty bytes as paymaster does not use innerInput
       innerInput: new Uint8Array(),
     });
 
@@ -56,7 +61,6 @@ describe("GaslessPaymaster", function () {
       .setGreeting("Hola, mundo!", {
         maxPriorityFeePerGas: ethers.BigNumber.from(0),
         maxFeePerGas: gasPrice,
-        // hardhcoded for testing
         gasLimit: 6000000,
         customData: {
           gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
@@ -65,18 +69,24 @@ describe("GaslessPaymaster", function () {
       });
 
     await setGreetingTx.wait();
+    const newBalance = await wallet.getBalance();
+    console.log(`New balance after transaction: ${newBalance}`);
 
-    return wallet.getBalance();
+    return newBalance;
   }
 
   it("Owner can update message for free", async function () {
+    console.log("Testing owner's ability to update message for free...");
     const newBalance = await executeGreetingTransaction(userWallet);
 
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+    const greetMessage = await greeter.greet();
+    console.log(`Greeter message: ${greetMessage}`);
+    expect(greetMessage).to.equal("Hola, mundo!");
     expect(newBalance).to.eql(ownerInitialBalance);
   });
 
   it("should allow owner to withdraw all funds", async function () {
+    console.log("Testing owner's ability to withdraw all funds...");
     try {
       const tx = await paymaster.connect(wallet).withdraw(userWallet.address);
       await tx.wait();
@@ -85,15 +95,7 @@ describe("GaslessPaymaster", function () {
     }
 
     const finalContractBalance = await provider.getBalance(paymaster.address);
-
+    console.log(`Final contract balance: ${finalContractBalance}`);
     expect(finalContractBalance).to.eql(ethers.BigNumber.from(0));
   });
-
-  // it("should prevent non-owners from withdrawing funds", async function () {
-  //   try {
-  //     await paymaster.connect(userWallet).withdraw(userWallet.address);
-  //   } catch (e) {
-  //     expect(e.message).to.include("Ownable: caller is not the owner");
-  //   }
-  // });
 });
