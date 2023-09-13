@@ -22,7 +22,7 @@ jobs:
         mode: 'run'
     
     - name: Ensure node is up
-      run: sleep 12
+      run: sleep 10
 
     - name: Install Dependencies
       run: yarn install
