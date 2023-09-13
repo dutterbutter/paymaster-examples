@@ -21,6 +21,14 @@ jobs:
       with:
         mode: 'run'
 
+    - name: Debugging (list all processes)
+      run: |
+        ps aux
+      
+    - name: Debugging (check network ports)
+      run: |
+        netstat -tuln
+
     - name: Install Dependencies
       run: yarn install
     
