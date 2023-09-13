@@ -25,9 +25,7 @@ describe("GaslessPaymaster", function () {
   before(async function () {
     console.log("Setting up environment...");
 
-    provider = new Provider(
-      hre.userConfig.networks?.zkSyncLocalTestnet?.url,
-    );
+    provider = new Provider("http://localhost:8011");
     wallet = new Wallet(PRIVATE_KEY, provider);
     deployer = new Deployer(hre, wallet);
     emptyWallet = Wallet.createRandom();
