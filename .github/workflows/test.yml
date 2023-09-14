@@ -40,15 +40,6 @@ jobs:
     - name: Run Tests
       run: |
         yarn test:contracts
-    
-    - name: Upload log files
-      if: steps.run_era_test_node.outputs.saveLogs == 'true' || github.event.inputs.saveLogs == 'true'
-      uses: actions/upload-artifact@v3
-      with:
-        name: logs
-        path: |
-          stdout.log
-          stderr.log
 
     - name: Shutdown Node
       run: |
