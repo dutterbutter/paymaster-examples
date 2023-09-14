@@ -16,11 +16,19 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
     
-    - name: Start node
-      id: run_era_test_node
+    - name: Run Era Test Node
       uses: dutterbutter/era-test-node-action@main
       with:
         mode: 'run'
+        showCalls: 'user'
+        showStorageLogs: 'read'
+        showVmDetails: 'all'
+        showGasDetails: 'all'
+        resolveHashes: 'true'
+        log: 'info'
+        logFilePath: 'era_test_node.log'
+        target: 'x86_64-unknown-linux-gnu'
+        version: 'v0.1.0-alpha.3'
       
     - name: Debugging (check network ports)
       run: |
