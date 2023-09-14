@@ -26,6 +26,7 @@ describe("GaslessPaymaster", function () {
     console.log("Setting up environment...");
 
     provider = new Provider("http://localhost:8011");
+    console.log("Provider: ", provider);
     wallet = new Wallet(PRIVATE_KEY, provider);
     deployer = new Deployer(hre, wallet);
     emptyWallet = Wallet.createRandom();
@@ -34,6 +35,7 @@ describe("GaslessPaymaster", function () {
     
     console.log("Deploying contracts...");
     paymaster = await deployContract(deployer, "GaslessPaymaster", []);
+    console.log("Paymaster deployed at: ", paymaster.address);
     greeter = await deployContract(deployer, "Greeter", ["Hi"]);
     console.log(`Paymaster deployed at: ${paymaster.address}`);
     console.log(`Greeter deployed at: ${greeter.address}`);

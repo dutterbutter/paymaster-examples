@@ -29,6 +29,11 @@ jobs:
       run: |
         netstat -tuln
 
+    - name: Check if Node service is running
+      run: |
+        sleep 5 # Wait for a few seconds to make sure the Node service is up
+        curl http://localhost:8011
+
     - name: Install Dependencies
       run: yarn install
     
