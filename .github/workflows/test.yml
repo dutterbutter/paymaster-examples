@@ -17,9 +17,11 @@ jobs:
       uses: actions/checkout@v3
     
     - name: Start node in background
+      id: run_era_test_node
       uses: dutterbutter/era-test-node-action@main
       with:
         mode: 'run'
+        saveLogs: 'true'
 
     - name: Debugging (list all processes)
       run: |
@@ -40,6 +42,15 @@ jobs:
     - name: Run Tests
       run: |
         yarn test:contracts
+    
+    - name: Upload log files
+      if: steps.run_era_test_node.outputs.saveLogs == 'true'
+      uses: actions/upload-artifact@v3
+      with:
+        name: logs
+        path: |
+          stdout.log
+          stderr.log
 
     - name: Shutdown Node
       run: |
