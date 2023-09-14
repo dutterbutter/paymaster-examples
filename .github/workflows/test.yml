@@ -29,14 +29,6 @@ jobs:
         logFilePath: 'era_test_node.log'
         target: 'x86_64-unknown-linux-gnu'
         version: 'v0.1.0-alpha.3'
-      
-    - name: Debugging (check network ports)
-      run: |
-        netstat -tuln
-
-    - name: Check if Node service is running
-      run: |
-        curl -X POST --data '{"jsonrpc":"2.0","method":"net_version","params":[],"id":1}' -H "Content-Type: application/json" http://localhost:8011
 
     - name: Install Dependencies
       run: yarn install
