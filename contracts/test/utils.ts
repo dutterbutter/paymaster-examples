@@ -7,9 +7,11 @@ async function deployContract(
   contract: string,
   params: any[],
 ): Promise<Contract> {
+  console.log(`Deploying ${contract}...`);
   const artifact = await deployer.loadArtifact(contract);
-
+  console.log(`Artifact: ${artifact}`);
   const deploymentFee = await deployer.estimateDeployFee(artifact, params);
+  console.log(`Deployment fee: ${deploymentFee}`);
   const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
   console.log(`${contract} deployment is estimated to cost ${parsedFee} ETH`);
 
