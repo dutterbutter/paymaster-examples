@@ -16,7 +16,7 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
     
-    - name: Start node in background
+    - name: Start node
       id: run_era_test_node
       uses: dutterbutter/era-test-node-action@main
       with:
@@ -43,7 +43,7 @@ jobs:
         yarn test:contracts
     
     - name: Upload log files
-      if: steps.run_era_test_node.outputs.saveLogs == 'true'
+      if: steps.run_era_test_node.outputs.saveLogs == 'true' || github.event.inputs.saveLogs == 'true'
       uses: actions/upload-artifact@v3
       with:
         name: logs
