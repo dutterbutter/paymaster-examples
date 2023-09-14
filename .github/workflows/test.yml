@@ -31,12 +31,6 @@ jobs:
         logFilePath: 'era_test_node.log'
         target: 'x86_64-unknown-linux-gnu'
         version: 'v0.1.0-alpha.3'
-    
-    - name: Upload era_test_node log
-      uses: actions/upload-artifact@v3
-      with:
-        name: era_test_node-log
-        path: era_test_node.log
 
     - name: Install Dependencies
       run: yarn install
@@ -44,3 +38,9 @@ jobs:
     - name: Run Tests
       run: |
         yarn test:contracts
+
+    - name: Upload era_test_node log
+      uses: actions/upload-artifact@v3
+      with:
+        name: era_test_node-log
+        path: era_test_node.log
