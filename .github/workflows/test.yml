@@ -21,7 +21,6 @@ jobs:
       with:
         mode: 'fork'
         network: 'mainnet'
-        forkAtHeight: '1855248'
         showCalls: 'user'
         showStorageLogs: 'read'
         showVmDetails: 'all'
