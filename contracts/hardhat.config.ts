@@ -16,7 +16,7 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSync : {
-      url: "http://0.0.0.0:8011",
+      url: "http://localhost:8011",
       ethNetwork: "goerli",
       zksync: true,
     },
