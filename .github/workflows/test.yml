@@ -19,9 +19,7 @@ jobs:
     - name: Run Era Test Node
       uses: dutterbutter/era-test-node-action@db/fix-tag
       with:
-        mode: 'fork'
-        network: 'mainnet'
-        forkAtHeight: '1855248'
+        mode: 'run'
         showCalls: 'user'
         showStorageLogs: 'read'
         showVmDetails: 'all'
