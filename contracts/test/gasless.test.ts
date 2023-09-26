@@ -25,7 +25,7 @@ describe("GaslessPaymaster", function () {
   before(async function () {
     console.log("Setting up environment...");
 
-    provider = new Provider("http://localhost:8011");
+    provider = new Provider("http://0.0.0.0:8011");
     console.log("Provider: ", provider);
     wallet = new Wallet(PRIVATE_KEY, provider);
     deployer = new Deployer(hre, wallet);
