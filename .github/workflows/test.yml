@@ -27,7 +27,7 @@ jobs:
         resolveHashes: 'true'
         log: 'info'
         logFilePath: 'era_test_node.log'
-        releaseTag: v0.0.1-alpha.boojum
+        releaseTag: v0.1.0-alpha.9
 
     - name: Check Node is Running
       run: |
