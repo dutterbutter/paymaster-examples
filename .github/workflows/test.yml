@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v3
     
     - name: Run Era Test Node
-      uses: dutterbutter/era-test-node-action@latest
+      uses: dutterbutter/era-test-node-action@db/fix-releases
       with:
         mode: 'run'
         showCalls: 'user'
@@ -27,7 +27,7 @@ jobs:
         resolveHashes: 'true'
         log: 'info'
         logFilePath: 'era_test_node.log'
-        releaseTag: v0.1.0-alpha.9
+        releaseTag: v0.0.1-alpha.boojum
 
     - name: Check Node is Running
       run: |
