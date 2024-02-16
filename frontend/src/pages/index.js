@@ -108,7 +108,9 @@ const Home = () => {
   const updateGreeting = async (newGreeting, params) => {
     try {
       let txHandle;
+      console.log("params: ", params);
       if (params) {
+        console.log("params: ", params)
         txHandle = await greeterContractInstance.setGreeting(
           newGreeting,
           params,
@@ -132,6 +134,7 @@ const Home = () => {
   const payForGreetingChange = async () => {
     try {
       const paymasterResult = await payWithPayMaster();
+      console.log("paymasterResult: ", paymasterResult);
       if (paymasterResult.error) {
         // Handle the error message here
         if (
@@ -182,7 +185,7 @@ const Home = () => {
       const gasPrice = await provider.getGasPrice();
 
       const paramsForFeeEstimation = await getPaymasterParams();
-
+      console.log("paramsForFeeEstimation: ", paramsForFeeEstimation);
       const gasLimit = await greeterContractInstance.estimateGas.setGreeting(
         newGreeting,
         {
@@ -192,6 +195,7 @@ const Home = () => {
           },
         },
       );
+      console.log("test");
 
       const paymasterParams = await getPaymasterParams();
       return {

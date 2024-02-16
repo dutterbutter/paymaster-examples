@@ -1,0 +1,49 @@
+name: run
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  test:
+    name: unit-tests
+    strategy:
+      matrix:
+        platform: [ubuntu-latest]
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    
+    - name: Run Era Test Node
+      uses: dutterbutter/era-test-node-action@v1
+      with:
+        mode: fork
+        network: mainnet
+        showCalls: 'user'
+        showStorageLogs: 'read'
+        showVmDetails: 'all'
+        showGasDetails: 'all'
+        resolveHashes: 'true'
+        log: 'info'
+        logFilePath: 'era_test_node.log'
+        releaseTag: v0.1.0-alpha.14
+
+    - name: Check Node is Running
+      run: |
+        curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"net_version","params":[],"id":67}' http://localhost:8011
+  
+
+    - name: Install Dependencies
+      run: yarn install
+    
+    - name: Run Tests
+      run: |
+        yarn test:contracts
+
+    - name: Upload era_test_node log
+      uses: actions/upload-artifact@v3
+      with:
+        name: era_test_node-log
+        path: era_test_node.log
