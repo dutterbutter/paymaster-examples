@@ -19,7 +19,8 @@ jobs:
     - name: Run Era Test Node
       uses: dutterbutter/era-test-node-action@v1
       with:
-        mode: 'run'
+        mode: fork
+        network: mainnet
         showCalls: 'user'
         showStorageLogs: 'read'
         showVmDetails: 'all'
