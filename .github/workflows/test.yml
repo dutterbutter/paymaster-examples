@@ -17,7 +17,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run Era Test Node
-        uses: dutterbutter/era-test-node-action@latest
+        uses: dutterbutter/anvil-zksync-action@db/anvil-zksync-repo-rename
+        with:
+          mode: fork
+          forkUrl: mainnet
+          logFilePath: "anvil_zksync.log"
 
       - name: Install Dependencies
         run: yarn install
@@ -25,3 +29,9 @@ jobs:
       - name: Run Tests
         run: |
           yarn ci:tests
+
+      - name: Upload Anvil ZKSYNC Log
+        uses: actions/upload-artifact@v3
+        with:
+          name: anvil_zksync-log
+          path: anvil_zksync.log
