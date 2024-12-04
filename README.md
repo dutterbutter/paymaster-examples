@@ -13,7 +13,7 @@ This repository houses a variety of example Paymaster Contracts demonstrating di
 
 The repository is divided into two main sections:
 
-- `/contracts`: This directory contains the smart contracts, where each sub-directory represents a unique Paymaster use case. 
+- `/contracts`: This directory contains the smart contracts, where each sub-directory represents a unique Paymaster use case. ss
 
 - `/frontend`: This directory hosts the frontend developed using React and Next.js. The frontend allows you to interact with the various Paymaster contracts provided.
 
