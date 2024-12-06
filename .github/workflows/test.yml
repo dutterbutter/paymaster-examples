@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run Era Test Node
-        uses: dutterbutter/era-test-node-action@latest
+        uses: dutterbutter/era-test-node-action@298eea49e29e226baa04195b1d0fce7042439259
 
       - name: Install Dependencies
         run: yarn install
