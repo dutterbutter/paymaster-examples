@@ -19,8 +19,7 @@ jobs:
       - name: Run anvil-zksync
         uses: dutterbutter/anvil-zksync-action@db/update-for-v0.2.2
         with:
-          mode: fork
-          forkUrl: mainnet
+          mode: run
           log: info
           logFilePath: anvil_zksync.log
           target: x86_64-unknown-linux-gnu
