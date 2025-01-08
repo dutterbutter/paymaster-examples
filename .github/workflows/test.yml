@@ -16,6 +16,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+
+      - name: Set up dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libssl1.1
+
       - name: Run anvil-zksync
         uses: dutterbutter/anvil-zksync-action@db/update-for-v0.2.2
         with:
