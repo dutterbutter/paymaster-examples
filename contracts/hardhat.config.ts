@@ -18,7 +18,7 @@ const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   networks: {
     hardhat: {
-      zksync: false,
+      zksync: true,
     },
     ZKsyncInMemory: {
       url: "http://127.0.0.1:8011",
