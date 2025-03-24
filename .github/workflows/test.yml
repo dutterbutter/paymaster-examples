@@ -32,7 +32,7 @@ jobs:
           yarn ci:tests
 
 
-      - name: Upload Anvil ZKSYNC Log
+      - name: Upload Anvil-zksync Log
         uses: actions/upload-artifact@v4
         with:
           name: anvil_zksync-log
