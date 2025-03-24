@@ -9,7 +9,7 @@ jobs:
     name: unit-tests
     strategy:
       matrix:
-        platform: [ubuntu-20.04, ubuntu-latest]
+        platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
 
     steps:
