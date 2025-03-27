@@ -23,7 +23,7 @@ jobs:
           logFilePath: anvil_zksync.log
           target: x86_64-unknown-linux-gnu
           releaseTag: bdec93c
-          protocolVersion: protocol-version 28
+          protocolVersion: 28
 
       - name: Install Dependencies
         run: yarn install
