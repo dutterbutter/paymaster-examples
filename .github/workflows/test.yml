@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run anvil-zksync
-        uses: dutterbutter/anvil-zksync-action@db/testing-protocol-args
+        uses: dutterbutter/anvil-zksync-action@db/testing-protocol-arg
         with:
           mode: run 
           logFilePath: anvil_zksync.log
