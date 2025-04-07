@@ -24,6 +24,7 @@ jobs:
           target: x86_64-unknown-linux-gnu
           releaseTag: bdec93c
           protocolVersion: 28
+          devSystemContracts: local
 
       - name: Install Dependencies
         run: yarn install
