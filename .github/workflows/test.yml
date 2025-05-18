@@ -20,8 +20,7 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
 
       - name: Start anvil
-        run: |
-          anvil --port 8012
+        run: anvil --port 8012
 
       - name: Run anvil-zksync
         uses: dutterbutter/anvil-zksync-action@db/rc-v2
