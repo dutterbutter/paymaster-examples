@@ -22,7 +22,7 @@ jobs:
           mode: run
           logFilePath: anvil_zksync.log
           target: x86_64-unknown-linux-gnu
-          releaseTag: 0.6.1
+          releaseTag: v0.6.1
           protocolVersion: 28
 
       - name: Install Dependencies
