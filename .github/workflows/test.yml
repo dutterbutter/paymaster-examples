@@ -21,7 +21,7 @@ jobs:
 
       - name: Start Foundry Anvil in background
         run: |
-          nohup anvil --port 8012 > anvil-foundry.log 2>&1 &
+          nohup anvil --port 8012 --no-request-size-limit > anvil-foundry.log 2>&1 &
           echo "⏳ waiting for anvil to come up…"
           sleep 5
 
@@ -32,7 +32,7 @@ jobs:
           logFilePath: anvil_zksync.log
           target: x86_64-unknown-linux-gnu
           releaseTag: v0.6.1
-          externalL1: true
+          externalL1: http://localhost:8012
 
       - name: Install Dependencies
         run: yarn install
