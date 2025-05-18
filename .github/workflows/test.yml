@@ -16,6 +16,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Start anvil
+        run: |
+          anvil --port 8012
+
       - name: Run anvil-zksync
         uses: dutterbutter/anvil-zksync-action@db/rc-v2
         with:
@@ -23,6 +30,7 @@ jobs:
           logFilePath: anvil_zksync.log
           target: x86_64-unknown-linux-gnu
           releaseTag: v0.6.1
+          externalL1: true
 
       - name: Install Dependencies
         run: yarn install
