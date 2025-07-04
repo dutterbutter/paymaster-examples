@@ -26,13 +26,17 @@ jobs:
           sleep 5
 
       - name: Run anvil-zksync
-        uses: dutterbutter/anvil-zksync-action@db/rc-v2
+        uses: dutterbutter/anvil-zksync-action@db/rate-limit-fixes
         with:
           mode: run
           logFilePath: anvil_zksync.log
           target: x86_64-unknown-linux-gnu
-          releaseTag: v0.6.1
           externalL1: http://localhost:8012
+      
+      - name: Install Foundry-ZKsync
+        uses: dutterbutter/foundry-zksync-toolchain@v1.0.1
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Dependencies
         run: yarn install
