@@ -32,11 +32,12 @@ jobs:
           logFilePath: anvil_zksync.log
           target: x86_64-unknown-linux-gnu
           externalL1: http://localhost:8012
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Install Foundry-ZKsync
         uses: dutterbutter/foundry-zksync-toolchain@v1.0.1
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Dependencies
         run: yarn install
