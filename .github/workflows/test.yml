@@ -16,8 +16,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
+      - name: Install Foundry (anvil)
+        uses: foundry-rs/foundry-toolchain@50d5a8956f2e319df19e6b57539d7e2acb9f8c1e # v1.5
+        with:
+          version: v1.3.4
+
 
       - name: Run ZKsync OS
         id: zks
