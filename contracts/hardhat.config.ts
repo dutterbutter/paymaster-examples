@@ -15,7 +15,7 @@ const config: HardhatUserConfig = {
     version: "1.5.15",
     settings: {},
   },
-  defaultNetwork: "ZKsyncInMemory",
+  defaultNetwork: "ZKsyncLocal",
   networks: {
     hardhat: {
       zksync: true,
