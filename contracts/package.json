@@ -6,7 +6,7 @@
   "author": "Antonio <aug@matterlabs.dev>",
   "license": "MIT",
   "devDependencies": {
-    "@matterlabs/hardhat-zksync": "file:/Users/dustinbrickwood/Documents/dev/zk/devx/hardhat-zksync/packages/hardhat-zksync",
+    "@matterlabs/hardhat-zksync": "latest",
     "@matterlabs/zksync-contracts": "^0.6.1",
     "@openzeppelin/contracts": "^4.9.1",
     "@types/chai": "^4.3.4",

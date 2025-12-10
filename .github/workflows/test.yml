@@ -21,7 +21,6 @@ jobs:
         with:
           version: v1.3.4
 
-
       - name: Run ZKsync OS
         id: zks
         uses: dutterbutter/zksync-server-action@db/add-log-outputs
@@ -29,14 +28,6 @@ jobs:
           version: latest
           anvil_logs: true
           zksync_logs: true
-
-      - name: Print Anvil log
-        if: always()
-        run: cat ${{ steps.zks.outputs.anvil_log_path }}
-
-      - name: Print server log
-        if: always()
-        run: cat ${{ steps.zks.outputs.zksync_log_path }}
             
       - name: Install Foundry-ZKsync
         uses: dutterbutter/foundry-zksync-toolchain@v1.0.1
@@ -50,9 +41,17 @@ jobs:
         run: |
           yarn ci:tests
 
+      - name: Print Anvil log
+        if: always()
+        run: cat ${{ steps.zks.outputs.anvil_log_path }}
 
-      - name: Upload Anvil-zksync Log
+      - name: Print server log
+        if: always()
+        run: cat ${{ steps.zks.outputs.zksync_log_path }}
+
+      - name: Upload logs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: anvil_zksync-log
-          path: anvil_zksync.log
+          name: zks-logs
+          path: .zks/*.log
