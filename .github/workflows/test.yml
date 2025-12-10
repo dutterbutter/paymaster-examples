@@ -26,8 +26,6 @@ jobs:
         uses: dutterbutter/zksync-server-action@db/add-log-outputs
         with:
           version: latest
-          anvil_logs: true
-          zksync_logs: true
             
       - name: Install Foundry-ZKsync
         uses: dutterbutter/foundry-zksync-toolchain@v1.0.1
