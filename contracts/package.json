@@ -6,7 +6,7 @@
   "author": "Antonio <aug@matterlabs.dev>",
   "license": "MIT",
   "devDependencies": {
-    "@matterlabs/hardhat-zksync": "^1.3.0",
+    "@matterlabs/hardhat-zksync": "file:/Users/dustinbrickwood/Documents/dev/zk/devx/hardhat-zksync/packages/hardhat-zksync",
     "@matterlabs/zksync-contracts": "^0.6.1",
     "@openzeppelin/contracts": "^4.9.1",
     "@types/chai": "^4.3.4",
@@ -22,7 +22,7 @@
     "zksync-ethers": "^6.14.0"
   },
   "scripts": {
-    "test": "hardhat test",
+    "test": "hardhat test --network hardhat",
     "ci:tests": "hardhat test --show-stack-traces",
     "greeter": "hardhat run ./deploy/greeter.ts",
     "gasless": "hardhat run ./deploy/gaslessPaymaster.ts",

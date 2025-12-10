@@ -12,7 +12,7 @@ const TEST_RICH_WALLET =
 
 const config: HardhatUserConfig = {
   zksolc: {
-    version: "latest",
+    version: "1.5.15",
     settings: {},
   },
   defaultNetwork: "ZKsyncInMemory",
