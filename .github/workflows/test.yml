@@ -39,7 +39,7 @@ jobs:
         run: |
           yarn ci:tests
 
-      - name: Print Anvil log
+      - name: Print Anvil logs
         if: always()
         run: cat ${{ steps.zks.outputs.anvil_log_path }}
 
