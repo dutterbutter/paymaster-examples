@@ -16,8 +16,21 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Run Era Test Node
-        uses: dutterbutter/era-test-node-action@latest
+      - name: Install Foundry (anvil)
+        uses: foundry-rs/foundry-toolchain@50d5a8956f2e319df19e6b57539d7e2acb9f8c1e # v1.5
+        with:
+          version: v1.5.1
+
+      - name: Run ZKsync OS
+        id: zks
+        uses: dutterbutter/zksync-server-action@db/update-setup
+        with:
+          version: v0.15.1
+            
+      - name: Install Foundry-ZKsync
+        uses: dutterbutter/foundry-zksync-toolchain@v1.0.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Dependencies
         run: yarn install
@@ -25,3 +38,18 @@ jobs:
       - name: Run Tests
         run: |
           yarn ci:tests
+
+      - name: Print Anvil logs
+        if: always()
+        run: cat ${{ steps.zks.outputs.anvil_log_path }}
+
+      - name: Print server log
+        if: always()
+        run: cat ${{ steps.zks.outputs.zksync_log_path }}
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zks-logs
+          path: .zks/*.log
